@@ -3,6 +3,7 @@ import { ContactAddForm } from 'components/ContactAddForm/ContactAddForm';
 import { Filter } from 'components/Filter/Filter';
 import { Header, SecondHeader, Section } from './ContactsSection.styled';
 import { useState } from 'react';
+import { Box } from 'components/Box';
 
 const ContactsSection = () => {
   const [filter, setFilter] = useState('');
@@ -10,13 +11,15 @@ const ContactsSection = () => {
     setFilter(value);
   };
   return (
-    <Section>
-      <Header>Phonebook</Header>
-      <ContactAddForm />
-      <SecondHeader>Contacts</SecondHeader>
-      <Filter filterChange={filterChange} />
-      <Contacts filter={filter} />
-    </Section>
+    <Box pt={8}>
+      <Section>
+        <Header>Phonebook</Header>
+        <ContactAddForm />
+        <SecondHeader>Contacts</SecondHeader>
+        <Filter filterChange={filterChange} />
+        <Contacts filter={filter} />
+      </Section>
+    </Box>
   );
 };
 
