@@ -7,6 +7,7 @@ import { UserMenu } from 'components/UserMenu/UserMenu';
 
 export const SharedLayout = () => {
   const { data } = useGetUserQuery();
+  console.log(data);
   return (
     <>
       <Box
