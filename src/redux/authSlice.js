@@ -18,7 +18,7 @@ export const authApi = createApi({
   endpoints: builder => ({
     getUser: builder.query({
       query: () => `/users/current`,
-      providesTags: ['User'],
+      providesTags: ['Auth'],
     }),
     signUp: builder.mutation({
       query: value => ({
@@ -26,7 +26,7 @@ export const authApi = createApi({
         method: 'POST',
         body: value,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Auth'],
     }),
     logIn: builder.mutation({
       query: value => ({
@@ -34,7 +34,7 @@ export const authApi = createApi({
         method: 'POST',
         body: value,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Auth'],
     }),
     logOut: builder.mutation({
       query: () => ({
@@ -42,7 +42,7 @@ export const authApi = createApi({
         method: 'POST',
         body: { name: null, email: null },
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Auth'],
     }),
   }),
 });

@@ -6,7 +6,6 @@ import { useGetContactsQuery } from 'redux/contactsSlice';
 
 export const Contacts = ({ filter }) => {
   const { data } = useGetContactsQuery();
-
   return (
     <>
       <List>

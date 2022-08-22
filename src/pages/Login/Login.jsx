@@ -9,6 +9,7 @@ const Login = () => {
     const password = e.target.elements.password.value;
     logIn({ email, password })
       .then(r => {
+        console.log('You are logged', r);
         e.target.reset();
       })
       .catch(error => console.log(error.message));
