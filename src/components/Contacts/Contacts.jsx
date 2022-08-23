@@ -15,7 +15,7 @@ export const Contacts = ({ filter }) => {
               contact.name.toLowerCase().includes(filter.toLowerCase()) && (
                 <Contact
                   name={contact.name}
-                  number={contact.phone}
+                  number={contact.number}
                   id={contact.id}
                   key={contact.id}
                 />

@@ -18,7 +18,7 @@ export const ContactAddForm = () => {
     ) {
       return Notify.warning(`${name} is already in contacts`);
     }
-    addContact({ name: name, phone: number });
+    addContact({ name, number });
     setName('');
     setNumber('');
   };
