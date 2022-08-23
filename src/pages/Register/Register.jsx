@@ -1,5 +1,5 @@
 import { Box } from 'components/Box';
-import { useSignUpMutation } from 'redux/authSlice';
+import { useSignUpMutation } from 'redux/authApi';
 
 const Register = () => {
   const [signUp] = useSignUpMutation();

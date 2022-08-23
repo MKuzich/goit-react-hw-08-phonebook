@@ -1,19 +1,28 @@
 import { Box } from 'components/Box';
-import { useLogInMutation } from 'redux/authSlice';
+import { useLogInMutation } from 'redux/authApi';
+import { setCredentials } from 'redux/authSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [logIn] = useLogInMutation();
-  const handleSubmit = e => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async e => {
     e.preventDefault();
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
-    logIn({ email, password })
-      .then(r => {
-        console.log('You are logged', r);
-        e.target.reset();
-      })
-      .catch(error => console.log(error.message));
+    try {
+      const user = await logIn({ email, password }).unwrap();
+      dispatch(setCredentials(user));
+      navigate('/');
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   return (
     <Box as="section" pt={8}>
       <h1>Sign In form for registered users</h1>

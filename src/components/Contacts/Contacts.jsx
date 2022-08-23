@@ -2,7 +2,7 @@ import React from 'react';
 import { List } from './Contacts.styled';
 import { Contact } from '../Contact/Contact';
 import PropTypes from 'prop-types';
-import { useGetContactsQuery } from 'redux/contactsSlice';
+import { useGetContactsQuery } from 'redux/contactsApi';
 
 export const Contacts = ({ filter }) => {
   const { data } = useGetContactsQuery();

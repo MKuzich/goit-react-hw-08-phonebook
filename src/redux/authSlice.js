@@ -1,55 +1,18 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createSlice } from '@reduxjs/toolkit';
 
-export const authApi = createApi({
-  reducerPath: 'auth',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-
-      return headers;
+const slice = createSlice({
+  name: 'auth',
+  initialState: { user: null, token: null },
+  reducers: {
+    setCredentials: (state, { payload: { user, token } }) => {
+      state.user = user;
+      state.token = token;
     },
-  }),
-  tagTypes: ['Auth'],
-  endpoints: builder => ({
-    getUser: builder.query({
-      query: () => `/users/current`,
-      providesTags: ['Auth'],
-    }),
-    signUp: builder.mutation({
-      query: value => ({
-        url: `/users/signup`,
-        method: 'POST',
-        body: value,
-      }),
-      invalidatesTags: ['Auth'],
-    }),
-    logIn: builder.mutation({
-      query: value => ({
-        url: `/users/login`,
-        method: 'POST',
-        body: value,
-      }),
-      invalidatesTags: ['Auth'],
-    }),
-    logOut: builder.mutation({
-      query: () => ({
-        url: `/users/signup`,
-        method: 'POST',
-        body: { name: null, email: null },
-      }),
-      invalidatesTags: ['Auth'],
-    }),
-  }),
+  },
 });
 
-export const {
-  useGetUserQuery,
-  useSignUpMutation,
-  useLogInMutation,
-  useLogOutMutation,
-} = authApi;
+export const { setCredentials } = slice.actions;
+
+export default slice.reducer;
+
+export const selectCurrentUser = state => state.auth.user;

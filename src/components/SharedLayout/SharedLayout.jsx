@@ -2,11 +2,11 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Box } from 'components/Box';
 import { HeaderLink } from './SharedLayout.styled';
-import { useGetUserQuery } from 'redux/authSlice';
 import { UserMenu } from 'components/UserMenu/UserMenu';
+import { useAuth } from 'redux/useAuth';
 
 export const SharedLayout = () => {
-  const { data } = useGetUserQuery();
+  const auth = useAuth();
 
   return (
     <>
@@ -25,7 +25,7 @@ export const SharedLayout = () => {
           <HeaderLink to="/login">Sign In</HeaderLink>
           <HeaderLink to="/contacts">Contacts</HeaderLink>
         </Box>
-        {data && <UserMenu />}
+        {auth.user && <UserMenu />}
       </Box>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />

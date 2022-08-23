@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Item } from './Contact.styled';
 import PropTypes from 'prop-types';
-import { useRemoveContactMutation } from 'redux/contactsSlice';
+import { useRemoveContactMutation } from 'redux/contactsApi';
 
 export const Contact = ({ name, number, id }) => {
   const [removeContact] = useRemoveContactMutation();
