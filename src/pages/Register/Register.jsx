@@ -1,5 +1,6 @@
-import { Box } from 'components/Box';
 import { useSignUpMutation } from 'redux/authApi';
+import { Button, Form, Container } from 'react-bootstrap';
+import { Title, Section } from './Register.styled';
 
 const Register = () => {
   const [signUp] = useSignUpMutation();
@@ -17,24 +18,34 @@ const Register = () => {
       .catch(error => console.log(error.message));
   };
   return (
-    <Box as="section" pt={8}>
-      <h1>Sign Up form for new users</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
-          Name
-          <input type="text" name="name" />
-        </label>
-        <label htmlFor="email">
-          Password
-          <input type="mail" name="email" />
-        </label>
-        <label htmlFor="password">
-          Email
-          <input type="text" name="password" />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
-    </Box>
+    <Container>
+      <Section>
+        <Title>Sign Up form for new users</Title>
+
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" name="name" placeholder="Enter name" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" name="email" placeholder="Enter email" />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+          </Form.Group>
+          <Button type="submit">Sign Up</Button>
+        </Form>
+      </Section>
+    </Container>
   );
 };
 

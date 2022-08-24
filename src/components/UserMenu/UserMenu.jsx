@@ -3,6 +3,7 @@ import { useAuth } from 'redux/useAuth';
 import { setCredentials } from 'redux/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Nav, Navbar } from 'react-bootstrap';
 
 export const UserMenu = () => {
   const [logOut] = useLogOutMutation();
@@ -22,10 +23,8 @@ export const UserMenu = () => {
 
   return (
     <>
-      <p>{auth.user.email}</p>
-      <button type="button" onClick={nahdleOnClick}>
-        Log Out
-      </button>
+      <Navbar.Text>{auth.user.email}</Navbar.Text>
+      <Nav.Link onClick={nahdleOnClick}>Log Out</Nav.Link>
     </>
   );
 };

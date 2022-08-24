@@ -1,8 +1,9 @@
-import { Box } from 'components/Box';
 import { useLogInMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Button, Form, Container } from 'react-bootstrap';
+import { Title, Section } from './Login.styled';
 
 const Login = () => {
   const [logIn] = useLogInMutation();
@@ -24,20 +25,30 @@ const Login = () => {
   };
 
   return (
-    <Box as="section" pt={8}>
-      <h1>Sign In form for registered users</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">
-          Email
-          <input type="mail" name="email" />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input type="text" name="password" />
-        </label>
-        <button type="submit">Sign In</button>
-      </form>
-    </Box>
+    <Container>
+      <Section>
+        <Title>Sign In form for registered users</Title>
+
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" name="email" placeholder="Enter email" />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+          </Form.Group>
+          <Button type="submit">Sign In</Button>
+        </Form>
+      </Section>
+    </Container>
   );
 };
 

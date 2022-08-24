@@ -14,7 +14,7 @@ export const theme = {
     accent: '#609',
     muted: '#f6f6f6',
   },
-  space: [0, 2, 4, 8, 16, 32, 48, 64, 88, 104],
+  space: [0, 2, 4, 8, 16, 32, 48, 64, 88, 104, 240],
   fonts: {
     body: 'system-ui, sans-serif',
     heading: 'system-ui, sans-serif',
