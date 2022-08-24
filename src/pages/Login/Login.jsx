@@ -17,7 +17,7 @@ const Login = () => {
     try {
       const user = await logIn({ email, password }).unwrap();
       dispatch(setCredentials(user));
-      navigate('/');
+      navigate('/contacts');
       e.target.reset();
     } catch (err) {
       console.log(err);

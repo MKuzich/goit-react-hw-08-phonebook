@@ -1,14 +1,19 @@
 import React from 'react';
-import { Label, Input } from './Filter.styled';
 import PropTypes from 'prop-types';
+import { Form } from 'react-bootstrap';
 
 export const Filter = ({ filterChange }) => {
   const hanldeChange = e => filterChange(e.target.value);
   return (
-    <Label htmlFor="filter">
-      Find contacts by name
-      <Input type="text" name="filter" onChange={hanldeChange} />
-    </Label>
+    <Form>
+      <Form.Label>Find contacts by name</Form.Label>
+      <Form.Control
+        type="text"
+        name="filter"
+        placeholder="Filter"
+        onChange={hanldeChange}
+      />
+    </Form>
   );
 };
 

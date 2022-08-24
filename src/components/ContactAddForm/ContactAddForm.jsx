@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Form, Button, Label, Input } from './ContactAddForm.styled';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useGetContactsQuery, useAddContactMutation } from 'redux/contactsApi';
+import { Button, Form } from 'react-bootstrap';
 
 export const ContactAddForm = () => {
   const { data } = useGetContactsQuery();
@@ -38,30 +38,32 @@ export const ContactAddForm = () => {
 
   return (
     <Form autoComplete="off" onSubmit={handleSubmit}>
-      <Label htmlFor="name">
-        Name
-        <Input
+      <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
           type="text"
           name="name"
           value={name}
+          placeholder="Name"
           onChange={handleChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-      </Label>
-      <Label htmlFor="number">
-        Number
-        <Input
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicNumber">
+        <Form.Label>Number</Form.Label>
+        <Form.Control
           type="tel"
           name="number"
           value={number}
+          placeholder="Number"
           onChange={handleChange}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-      </Label>
+      </Form.Group>
       <Button type="submit">Add contact</Button>
     </Form>
   );

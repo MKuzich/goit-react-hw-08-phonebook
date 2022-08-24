@@ -1,9 +1,10 @@
 import { Contacts } from 'components/Contacts/Contacts';
 import { ContactAddForm } from 'components/ContactAddForm/ContactAddForm';
 import { Filter } from 'components/Filter/Filter';
-import { Header, SecondHeader, Section } from './ContactsSection.styled';
+import { Header, Section } from './ContactsSection.styled';
 import { useState } from 'react';
 import { Box } from 'components/Box';
+import { Container } from 'react-bootstrap';
 
 const ContactsSection = () => {
   const [filter, setFilter] = useState('');
@@ -11,15 +12,33 @@ const ContactsSection = () => {
     setFilter(value);
   };
   return (
-    <Box pt={8}>
+    <Container>
       <Section>
-        <Header>Phonebook</Header>
-        <ContactAddForm />
-        <SecondHeader>Contacts</SecondHeader>
-        <Filter filterChange={filterChange} />
-        <Contacts filter={filter} />
+        <Box
+          border="normal"
+          borderRadius="large"
+          borderColor="borders"
+          py={6}
+          px={5}
+          width={0.42}
+        >
+          <Header>Add contacts to your phonebook</Header>
+          <ContactAddForm />
+        </Box>
+        <Box
+          border="normal"
+          borderRadius="large"
+          borderColor="borders"
+          py={6}
+          px={5}
+          width={0.54}
+        >
+          <Header>Contacts</Header>
+          <Filter filterChange={filterChange} />
+          <Contacts filter={filter} />
+        </Box>
       </Section>
-    </Box>
+    </Container>
   );
 };
 

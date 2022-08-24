@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, Item } from './Contact.styled';
+import { Item, Text } from './Contact.styled';
 import PropTypes from 'prop-types';
 import { useRemoveContactMutation } from 'redux/contactsApi';
+import { Button } from 'react-bootstrap';
 
 export const Contact = ({ name, number, id }) => {
   const [removeContact] = useRemoveContactMutation();
@@ -11,8 +12,15 @@ export const Contact = ({ name, number, id }) => {
   };
   return (
     <Item>
-      {name}: {number}
-      <Button type="button" onClick={handleRemoveContact} id={id}>
+      <Text>
+        {name}: {number}
+      </Text>
+      <Button
+        variant="outline-primary"
+        type="button"
+        onClick={handleRemoveContact}
+        id={id}
+      >
         Delete
       </Button>
     </Item>
