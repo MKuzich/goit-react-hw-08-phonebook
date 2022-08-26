@@ -3,9 +3,10 @@ import { Item, Text } from './Contact.styled';
 import PropTypes from 'prop-types';
 import { useRemoveContactMutation } from 'redux/contactsApi';
 import { Button } from 'react-bootstrap';
+import { Spin } from './Contact.styled';
 
 export const Contact = ({ name, number, id }) => {
-  const [removeContact] = useRemoveContactMutation();
+  const [removeContact, { isLoading }] = useRemoveContactMutation();
 
   const handleRemoveContact = e => {
     removeContact(e.target.id);
@@ -22,6 +23,11 @@ export const Contact = ({ name, number, id }) => {
         id={id}
       >
         Delete
+        {isLoading && (
+          <Spin animation="border" role="status" size="sm">
+            <span className="visually-hidden">Loading...</span>
+          </Spin>
+        )}
       </Button>
     </Item>
   );

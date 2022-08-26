@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Spinner } from 'react-bootstrap';
 
 export const Title = styled.h1`
   margin-bottom: ${p => p.theme.space[5]}px;
@@ -17,4 +18,8 @@ export const Section = styled.section`
   @media screen and (max-width: 767px) {
     width: 90%;
   }
+`;
+
+export const Spin = styled(Spinner)`
+  margin-left: ${p => p.theme.space[3]}px;
 `;

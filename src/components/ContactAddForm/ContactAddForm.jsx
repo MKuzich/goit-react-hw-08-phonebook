@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useGetContactsQuery, useAddContactMutation } from 'redux/contactsApi';
 import { Button, Form } from 'react-bootstrap';
+import { Spin } from './ContactAddForm.styled';
 
 export const ContactAddForm = () => {
   const { data } = useGetContactsQuery();
-  const [addContact] = useAddContactMutation();
+  const [addContact, { isLoading }] = useAddContactMutation();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -64,7 +65,14 @@ export const ContactAddForm = () => {
           required
         />
       </Form.Group>
-      <Button type="submit">Add contact</Button>
+      <Button type="submit">
+        Add contact
+        {isLoading && (
+          <Spin animation="border" role="status" size="sm">
+            <span className="visually-hidden">Loading...</span>
+          </Spin>
+        )}
+      </Button>
     </Form>
   );
 };

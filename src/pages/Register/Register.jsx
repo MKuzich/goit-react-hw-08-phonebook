@@ -1,21 +1,28 @@
 import { useSignUpMutation } from 'redux/authApi';
 import { Button, Form, Container } from 'react-bootstrap';
-import { Title, Section } from './Register.styled';
+import { Title, Section, Spin } from './Register.styled';
+import { setCredentials } from 'redux/authSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-  const [signUp] = useSignUpMutation();
+  const [signUp, { isLoading }] = useSignUpMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const name = e.target.elements.name.value;
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
-    signUp({ name, email, password })
-      .then(r => {
-        console.log(r);
-        e.target.reset();
-      })
-      .catch(error => console.log(error.message));
+    try {
+      const user = await signUp({ name, email, password }).unwrap();
+      dispatch(setCredentials(user));
+      navigate('/contacts');
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <Container>
@@ -42,7 +49,14 @@ const Register = () => {
               placeholder="Password"
             />
           </Form.Group>
-          <Button type="submit">Sign Up</Button>
+          <Button type="submit">
+            Sign Up
+            {isLoading && (
+              <Spin animation="border" role="status" size="sm">
+                <span className="visually-hidden">Loading...</span>
+              </Spin>
+            )}
+          </Button>
         </Form>
       </Section>
     </Container>

@@ -3,10 +3,10 @@ import { setCredentials } from 'redux/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, Container } from 'react-bootstrap';
-import { Title, Section } from './Login.styled';
+import { Title, Section, Spin } from './Login.styled';
 
 const Login = () => {
-  const [logIn] = useLogInMutation();
+  const [logIn, { isLoading }] = useLogInMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -45,7 +45,14 @@ const Login = () => {
               placeholder="Password"
             />
           </Form.Group>
-          <Button type="submit">Sign In</Button>
+          <Button type="submit">
+            Sign In
+            {isLoading && (
+              <Spin animation="border" role="status" size="sm">
+                <span className="visually-hidden">Loading...</span>
+              </Spin>
+            )}
+          </Button>
         </Form>
       </Section>
     </Container>

@@ -2,9 +2,10 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useAuth } from 'redux/useAuth';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar, Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { RiContactsBookLine } from 'react-icons/ri';
+import { Box } from 'components/Box';
 
 export const SharedLayout = () => {
   const auth = useAuth();
@@ -42,7 +43,17 @@ export const SharedLayout = () => {
         </Container>
       </Navbar>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <Container>
+            <Box display="flex" justifyContent="center" py={6}>
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            </Box>
+          </Container>
+        }
+      >
         <Outlet />
       </Suspense>
     </>

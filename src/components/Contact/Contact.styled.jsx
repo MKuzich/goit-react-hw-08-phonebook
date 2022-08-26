@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Spinner } from 'react-bootstrap';
 
 export const Item = styled.li`
   display: flex;
@@ -8,4 +9,8 @@ export const Item = styled.li`
 
 export const Text = styled.span`
   margin-right: ${p => p.theme.space[5]}px;
+`;
+
+export const Spin = styled(Spinner)`
+  margin-left: ${p => p.theme.space[3]}px;
 `;

@@ -3,9 +3,10 @@ import { List } from './Contacts.styled';
 import { Contact } from '../Contact/Contact';
 import PropTypes from 'prop-types';
 import { useGetContactsQuery } from 'redux/contactsApi';
+import { Spinner } from 'react-bootstrap';
 
 export const Contacts = ({ filter }) => {
-  const { data } = useGetContactsQuery();
+  const { data, isFetching } = useGetContactsQuery();
   return (
     <>
       <List>
@@ -23,6 +24,11 @@ export const Contacts = ({ filter }) => {
             );
           })}
       </List>
+      {isFetching && (
+        <Spinner animation="border" role="status" size="sm">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      )}
     </>
   );
 };
